@@ -1,1 +1,94 @@
 @import "tailwindcss";
+
+/* Floating code particles animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.12;
+  }
+  90% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+/* Slow breathing gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating up and down hover animation */
+@keyframes floatHover {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Animated breathing gradient overlay */
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #030712 0%,
+    #0f0a1a 25%,
+    #030712 50%,
+    #0a0a14 75%,
+    #030712 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Glassmorphism card */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+/* Floating hover effect on all cards */
+.card-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
+  animation: floatHover 2s ease-in-out infinite;
+}
+
+/* Left purple accent border */
+.accent-border {
+  border-left: 3px solid rgba(139, 92, 246, 0.7);
+  padding-left: 1rem;
+}
+
+/* Glowing section divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(139, 92, 246, 0.3) 30%,
+    rgba(139, 92, 246, 0.6) 50%,
+    rgba(139, 92, 246, 0.3) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+  margin: 0 auto;
+  max-width: 600px;
+}
