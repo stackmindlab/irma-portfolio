@@ -1,13 +1,43 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Character encoding - always UTF-8 for modern web apps -->
     <meta charset="UTF-8" />
+
+    <!-- Favicon - the small icon shown in browser tab -->
+    <!-- Replace favicon.svg with your own icon later -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Viewport - makes site responsive on mobile devices -->
+    <!-- width=device-width = use device width, initial-scale=1 = no zoom -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>irma-portfolio</title>
+
+    <!-- SEO meta description - shows under your URL in Google search results -->
+    <meta
+      name="description"
+      content="Irma Rodriguez - Full-Stack Engineer specializing in AI and Security. 13+ years in enterprise IT. Building full-stack applications, AI tools, and security software."
+    />
+
+    <!-- Open Graph tags - controls how your site looks when shared on LinkedIn, Twitter etc -->
+    <meta
+      property="og:title"
+      content="Irma Rodriguez | Full-Stack Engineer · AI & Security"
+    />
+    <meta
+      property="og:description"
+      content="Software Engineer with 13+ years in enterprise IT. Building full-stack applications, AI tools, and security software."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Browser tab title - what shows in the tab at top of browser -->
+    <title>Irma Rodriguez | Full-Stack Engineer · AI & Security</title>
   </head>
   <body>
+    <!-- React mounts your entire app inside this single div -->
+    <!-- main.jsx finds this div by its id="root" -->
     <div id="root"></div>
+
+    <!-- Loads main.jsx as a module - entry point for the entire React app -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

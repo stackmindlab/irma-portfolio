@@ -1,130 +1,173 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+// Hero.jsx - First section visitors see
+// Full screen height, everything centered vertically and horizontally
+// Name animates with letter spacing spread on page load
+// Typing animation cycles through 3 job titles using useState and useEffect
+// Stats row scales up on hover using Framer Motion whileHover
+// Buttons lift up on hover and bounce on click using whileHover and whileTap
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 function Hero() {
-  const titles = [
-    "Full-Stack Engineer",
-    "AI Developer",
-    "Security Engineer"
-  ]
+  // Three titles that cycle in the typing animation
+  const titles = ["Full-Stack Engineer", "AI Developer", "Security Engineer"];
 
-  const [titleIndex, setTitleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [deleting, setDeleting] = useState(false)
+  // displayed = the text currently showing in the typing animation
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  // deleting = whether we are currently removing characters
+  const [deleting, setDeleting] = useState(false);
 
+  // Typing animation logic runs every time displayed, deleting, or titleIndex changes
   useEffect(() => {
-    const current = titles[titleIndex]
+    const current = titles[titleIndex];
+
     if (!deleting && displayed.length < current.length) {
+      // Still typing - add one character every 80ms
       const timeout = setTimeout(() => {
-        setDisplayed(current.slice(0, displayed.length + 1))
-      }, 80)
-      return () => clearTimeout(timeout)
+        setDisplayed(current.slice(0, displayed.length + 1));
+      }, 80);
+      return () => clearTimeout(timeout);
     }
+
     if (!deleting && displayed.length === current.length) {
-      const timeout = setTimeout(() => setDeleting(true), 2000)
-      return () => clearTimeout(timeout)
+      // Finished typing - wait 2 seconds then start deleting
+      const timeout = setTimeout(() => setDeleting(true), 2000);
+      return () => clearTimeout(timeout);
     }
+
     if (deleting && displayed.length > 0) {
+      // Deleting - remove one character every 40ms (faster than typing)
       const timeout = setTimeout(() => {
-        setDisplayed(current.slice(0, displayed.length - 1))
-      }, 40)
-      return () => clearTimeout(timeout)
+        setDisplayed(current.slice(0, displayed.length - 1));
+      }, 40);
+      return () => clearTimeout(timeout);
     }
+
     if (deleting && displayed.length === 0) {
-      setDeleting(false)
-      setTitleIndex((prev) => (prev + 1) % titles.length)
+      // Done deleting - move to next title
+      setDeleting(false);
+      setTitleIndex((prev) => (prev + 1) % titles.length);
     }
-  }, [displayed, deleting, titleIndex])
+  }, [displayed, deleting, titleIndex]);
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center overflow-hidden">
+    // overflow-hidden prevents particles from causing horizontal scroll
+    <section className="relative flex flex-col items-center justify-center min-h-screen px-4 md:px-6 text-center overflow-hidden">
+      {/* Purple glow blob behind content - pointer-events-none so it doesnt block clicks */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-purple-600 rounded-full opacity-10 blur-3xl pointer-events-none" />
 
-      {/* Purple glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600 rounded-full opacity-10 blur-3xl pointer-events-none" />
-
-      {/* Name */}
+      {/* Name - letter spacing starts wide and compresses to normal on load */}
       <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative z-10 text-5xl md:text-7xl font-bold text-white mb-4"
+        initial={{ opacity: 0, letterSpacing: "0.5em" }}
+        animate={{ opacity: 1, letterSpacing: "0em" }}
+        transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+        className="relative z-10 text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4"
       >
         Irma Rodriguez
       </motion.h1>
 
-      {/* Typing animation */}
+      {/* Typing animation container - fixed height prevents layout shift */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
         className="relative z-10 h-8 mb-6"
       >
-        <p className="text-xl text-purple-400 font-medium">
+        <p className="text-lg md:text-xl text-purple-400 font-medium">
+          {/* displayed updates character by character */}
           {displayed}
+          {/* Blinking cursor */}
           <span className="animate-pulse">|</span>
         </p>
       </motion.div>
 
-      {/* Bio */}
+      {/* Bio - short and punchy */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className="relative z-10 text-gray-400 max-w-xl text-lg mb-8"
+        transition={{ duration: 0.5, delay: 1.0 }}
+        className="relative z-10 text-gray-400 max-w-xl text-base md:text-lg mb-8 px-2"
       >
-        Software Engineer with 13+ years in enterprise IT. Building at
-        the intersection of full-stack development, AI, and cybersecurity.
+        Software Engineer with 13+ years in enterprise IT. Building full-stack
+        applications, exploring AI, and developing secure, scalable solutions.
       </motion.p>
 
-      {/* Stats */}
+      {/* Stats row - four credibility numbers */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.1 }}
-        className="relative z-10 flex gap-8 mb-10 flex-wrap justify-center"
+        transition={{ duration: 0.5, delay: 1.2 }}
+        className="relative z-10 flex gap-4 md:gap-8 mb-10 justify-center"
       >
-        <div className="text-center">
-          <div className="text-2xl font-bold text-white">13+</div>
-          <div className="text-gray-500 text-sm">Years in Tech</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-white">6</div>
-          <div className="text-gray-500 text-sm">Projects</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-white">BS</div>
-          <div className="text-gray-500 text-sm">Software Engineering</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold text-white">3</div>
-          <div className="text-gray-500 text-sm">Tech Domains</div>
-        </div>
+        {[
+          { value: "13+", label: "Years in Tech" },
+          { value: "6", label: "Projects" },
+          { value: "BS", label: "Software Engineering" },
+          { value: "3", label: "Tech Domains" },
+        ].map((stat) => (
+          // Each stat scales up and lifts on hover
+          <motion.div
+            key={stat.label}
+            whileHover={{ scale: 1.15, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="text-center cursor-default"
+          >
+            <div className="text-xl md:text-2xl font-bold text-white">
+              {stat.value}
+            </div>
+            <div className="text-gray-500 text-xs md:text-sm">{stat.label}</div>
+          </motion.div>
+        ))}
       </motion.div>
 
-      {/* Buttons */}
+      {/* CTA Buttons - outline style, lift on hover, bounce on click */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.4 }}
-        className="relative z-10 flex gap-4 flex-wrap justify-center"
+        className="relative z-10 flex gap-3 flex-wrap justify-center px-4"
       >
-        <a href="https://github.com/stackmindlab" target="_blank" rel="noreferrer"
-          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition"
-          style={{boxShadow:'0 0 20px rgba(139,92,246,0.3)'}}>
+        {/* GitHub - opens in new tab */}
+        <motion.a
+          href="https://github.com/stackmindlab"
+          target="_blank"
+          rel="noreferrer"
+          whileHover={{ y: -5, boxShadow: "0 0 25px rgba(139,92,246,0.6)" }}
+          whileTap={{ scale: 0.85 }}
+          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          className="btn-secondary text-sm px-4 py-2 md:px-6 md:py-3"
+        >
           GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/irmaro/" target="_blank" rel="noreferrer"
-          className="border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-6 py-3 rounded-lg font-medium transition">
-          LinkedIn
-        </a>
-        <a href="mailto:irod261@wgu.edu"
-          className="border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-6 py-3 rounded-lg font-medium transition">
-          Contact Me
-        </a>
-      </motion.div>
+        </motion.a>
 
+        {/* LinkedIn - opens in new tab */}
+        <motion.a
+          href="https://www.linkedin.com/in/irmaro/"
+          target="_blank"
+          rel="noreferrer"
+          whileHover={{ y: -5, boxShadow: "0 0 25px rgba(139,92,246,0.6)" }}
+          whileTap={{ scale: 0.85 }}
+          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          className="btn-secondary text-sm px-4 py-2 md:px-6 md:py-3"
+        >
+          LinkedIn
+        </motion.a>
+
+        {/* Contact Me - opens email client */}
+        <motion.a
+          href="mailto:irod261@wgu.edu"
+          whileHover={{ y: -5, boxShadow: "0 0 25px rgba(139,92,246,0.6)" }}
+          whileTap={{ scale: 0.85 }}
+          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          className="btn-secondary text-sm px-4 py-2 md:px-6 md:py-3"
+        >
+          Contact Me
+        </motion.a>
+      </motion.div>
     </section>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

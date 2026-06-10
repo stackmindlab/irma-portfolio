@@ -1,16 +1,81 @@
-# React + Vite
+# Irma Rodriguez — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live site: [irma-portfolio.vercel.app](https://irma-portfolio.vercel.app)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About
 
-## React Compiler
+I built this portfolio to showcase my transition from 13+ years in enterprise IT into software engineering. The stack, the design, and every line of code was written by me — not generated. I wanted something that felt like me: dark, technical, and direct.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 19** — component-based UI
+- **Vite** — build tool and dev server
+- **Tailwind CSS** — utility-first styling
+- **Framer Motion** — scroll and hover animations
+- **HTML Canvas API** — constellation particle background
+
+---
+
+## Features
+
+- Typing animation cycling through job titles
+- Constellation particle network background
+- Scroll-triggered animations on every section
+- Glassmorphism cards with hover float effect
+- Fully responsive — mobile, tablet, desktop
+- Hamburger menu on mobile
+- Experience timeline with alternating layout
+- Dark theme with purple accent throughout
+
+---
+
+## Sections
+
+- **Hero** — name, title, bio, stats, links
+- **About** — background and current focus
+- **Skills** — tech stack by category
+- **Experience** — 13+ years of enterprise IT roles
+- **Projects** — 9 projects built during WGU BS Software Engineering
+- **Contact** — email, LinkedIn, GitHub
+
+---
+
+## Projects
+
+| Project   | Stack                             | Status      |
+| --------- | --------------------------------- | ----------- |
+| TaskFlow  | MongoDB, Express, React, Node.js  | In Progress |
+| SmartChat | React, Node.js, OpenAI API        | In Progress |
+| NetScan   | Python, sockets, argparse         | In Progress |
+| VaultPass | Node.js, bcrypt, AES-256, MongoDB | In Progress |
+| LogGuard  | Python, sklearn, pandas           | In Progress |
+| ResumeAI  | React, Python, OpenAI, FastAPI    | In Progress |
+
+---
+
+## Run Locally
+
+```bash
+git clone https://github.com/stackmindlab/irma-portfolio
+cd irma-portfolio
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`
+
+---
+
+## Contact
+
+- Email: irod261@wgu.edu
+- LinkedIn: [linkedin.com/in/irmaro](https://www.linkedin.com/in/irmaro/)
+- GitHub: [github.com/stackmindlab](https://github.com/stackmindlab)
+
+---
+
+Built by Irma Rodriguez · 2026

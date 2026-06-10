@@ -1,46 +1,57 @@
+/* index.css - Global styles and custom CSS classes */
+/* Tailwind is loaded via @import - gives access to all utility classes */
+/* Custom classes defined here are used across all components */
+/* These classes cannot be done with Tailwind alone - they use CSS animations */
+
 @import "tailwindcss";
 
-/* Floating code particles animation */
-@keyframes floatUp {
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Breathing gradient - slowly shifts background colors */
+/* Used on the main page background in App.jsx */
+@keyframes gradientShift {
   0% {
-    transform: translateY(0);
-    opacity: 0;
+    background-position: 0% 50%;
   }
-  10% {
-    opacity: 0.12;
-  }
-  90% {
-    opacity: 0.12;
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    transform: translateY(-100vh);
-    opacity: 0;
+    background-position: 0% 50%;
   }
 }
 
-/* Slow breathing gradient animation */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Floating up and down hover animation */
+/* Float up and down - used on card hover */
+/* Creates a levitating effect when pointing at cards */
 @keyframes floatHover {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-/* Subtle grid background */
+/* ============================================
+   BACKGROUND
+   ============================================ */
+
+/* Subtle purple grid lines across entire page */
+/* background-image draws two sets of lines - horizontal and vertical */
 .grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
-/* Animated breathing gradient overlay */
+/* Slow breathing dark gradient */
+/* background-size 400% gives room for the shift animation to move */
 .gradient-bg {
   background: linear-gradient(
     135deg,
@@ -54,30 +65,45 @@
   animation: gradientShift 15s ease infinite;
 }
 
-/* Glassmorphism card */
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+/* Glassmorphism effect - frosted glass look */
+/* backdrop-filter blurs content behind the element */
+/* Used on all section cards throughout the portfolio */
 .glass {
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(139, 92, 246, 0.15);
 }
 
-/* Floating hover effect on all cards */
+/* Card hover - glow and float effect */
+/* animation starts when hover begins, stops when hover ends */
 .card-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 .card-hover:hover {
   border-color: rgba(139, 92, 246, 0.5);
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
-  animation: floatHover 2s ease-in-out infinite;
+  animation: floatHover 1.5s ease-in-out infinite;
 }
 
-/* Left purple accent border */
+/* Left purple border accent on About cards */
 .accent-border {
   border-left: 3px solid rgba(139, 92, 246, 0.7);
   padding-left: 1rem;
 }
 
-/* Glowing section divider */
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+/* Glowing purple horizontal line between sections */
+/* Gradient fades from transparent on edges to purple in center */
 .divider {
   height: 1px;
   background: linear-gradient(
@@ -91,4 +117,48 @@
   box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
   margin: 0 auto;
   max-width: 600px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+/* Primary button - solid purple */
+/* Used for main CTA actions: Hire Me, Email Me */
+.btn-primary {
+  background: rgb(147, 51, 234);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: rgb(126, 34, 206);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+}
+
+/* Secondary button - purple outline */
+/* Used for secondary actions: GitHub, LinkedIn, Contact Me */
+/* Fills solid purple on hover */
+.btn-secondary {
+  border: 1px solid rgb(147, 51, 234);
+  color: rgb(192, 132, 252);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+  display: inline-block;
+}
+.btn-secondary:hover {
+  background: rgb(147, 51, 234);
+  color: white;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
 }
