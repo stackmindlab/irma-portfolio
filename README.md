@@ -1,6 +1,6 @@
 # Irma Rodriguez — Portfolio
 
-Live site: [irma-portfolio.vercel.app](https://irma-portfolio.vercel.app)
+Live site: [irma-r-portfolio.vercel.app](https://irma-r-portfolio.vercel.app)
 
 ---
 
