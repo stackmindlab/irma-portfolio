@@ -29,7 +29,7 @@ function Navbar() {
           href="#"
           className="text-white font-bold text-lg hover:text-purple-400 transition"
         >
-          Irma Rodriguez
+          Irma
         </a>
 
         {/* Desktop links - hidden on mobile screens */}

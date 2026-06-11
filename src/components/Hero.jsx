@@ -59,12 +59,13 @@ function Hero() {
 
       {/* Name - letter spacing starts wide and compresses to normal on load */}
       <motion.h1
-        initial={{ opacity: 0, letterSpacing: "0.5em" }}
-        animate={{ opacity: 1, letterSpacing: "0em" }}
-        transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-        className="relative z-10 text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4"
+        initial={{ opacity: 0, letterSpacing: '0.5em' }}
+        animate={{ opacity: 1, letterSpacing: '0em' }}
+        whileHover={{ y: -10, scale: 1.05 }}
+        transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
+        className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent cursor-default"
       >
-        Irma Rodriguez
+        Irma
       </motion.h1>
 
       {/* Typing animation container - fixed height prevents layout shift */}

@@ -103,7 +103,7 @@ function Contact() {
         transition={{ duration: 0.4, delay: 0.5 }}
         className="text-gray-700 text-sm mt-12"
       >
-        Built by Irma Rodriguez · 2026
+        Built by Irma · 2026
       </motion.p>
 
     </section>
